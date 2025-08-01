@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Urban Brew - Coffee Shop</title>
+  <!-- Materialize CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    .carousel img {
+      height: 400px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <nav class="brown darken-3">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">Urban Brew</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#carousel">Menu</a></li>
+        <li><a href="#footer">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="section center-align">
+    <h3>Welcome to Urban Brew</h3>
+    <p class="flow-text">Your favorite local spot for freshly brewed coffee and cozy vibes.</p>
+  </div>
+
+  <!-- Image Carousel -->
+  <div class="container" id="carousel">
+    <h4 class="center-align">Our Signature Drinks</h4>
+    <div class="carousel">
+      <a class="carousel-item" href="#1">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Espresso">
+      </a>
+      <a class="carousel-item" href="#2">
+        <img src="https://images.unsplash.com/photo-1587731744344-51232a58d8be?auto=format&fit=crop&w=800&q=80" alt="Latte">
+      </a>
+      <a class="carousel-item" href="#3">
+        <img src="https://images.unsplash.com/photo-1536520002442-39764a41e967?auto=format&fit=crop&w=800&q=80" alt="Cold Brew">
+      </a>
+      <a class="carousel-item" href="#4">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Cappuccino">
+      </a>
+      <a class="carousel-item" href="#5">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Mocha">
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer brown darken-3" id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6">
+          <h5 class="white-text">Urban Brew</h5>
+          <p class="grey-text text-lighten-4">We serve organic, hand-roasted coffee and fresh pastries every day.</p>
+        </div>
+        <div class="col s12 m4 offset-m2">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Instagram</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Email</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2025 Urban Brew Coffee Co.
+        <a class="grey-text text-lighten-4 right" href="#!">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const elems = document.querySelectorAll('.carousel');
+      M.Carousel.init(elems, {
+        indicators: true
+      });
+    });
+  </script>
+</body>
+</html>
