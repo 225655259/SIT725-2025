@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Silent Witness - Basic Page</title>
+</head>
+<body>
+  <h1>Silent Witness</h1>
+  <p>Simple anonymous report form</p>
+
+  <form id="reportForm">
+    <label>Email (optional):</label>
+    <input type="email" id="email" /><br><br>
+
+    <label>Category:</label>
+    <input type="text" id="category" required /><br><br>
+
+    <label>Details:</label>
+    <textarea id="details" required></textarea><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="status"></p>
+
+  <!-- Load UMD utils first (adds window.SWUtils in browser) -->
+  <script src="./utils.js"></script>
+  <!-- Page logic uses SWUtils from window -->
+  <script src="./app.js"></script>
+</body>
+</html>
