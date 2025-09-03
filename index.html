@@ -2,30 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Silent Witness - Basic Page</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px; 
+      background: #f9f9f9; 
+    }
+    h1 { color: #333; }
+    form { 
+      background: #fff; 
+      padding: 20px; 
+      border: 1px solid #ccc; 
+      border-radius: 6px; 
+      max-width: 400px; 
+    }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, textarea, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button { 
+      margin-top: 12px; 
+      background: #333; 
+      color: #fff; 
+      cursor: pointer; 
+    }
+    #status { margin-top: 10px; font-weight: bold; }
+    a { display: inline-block; margin-top: 16px; color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
   <h1>Silent Witness</h1>
   <p>Simple anonymous report form</p>
 
+  <!-- 🔗 Link to the dashboard page -->
+  <p><a href="./dashboard.html">Go to Dashboard</a></p>
+
   <form id="reportForm">
     <label>Email (optional):</label>
-    <input type="email" id="email" /><br><br>
+    <input type="email" id="email" />
 
     <label>Category:</label>
-    <input type="text" id="category" required /><br><br>
+    <input type="text" id="category" required />
 
     <label>Details:</label>
-    <textarea id="details" required></textarea><br><br>
+    <textarea id="details" required></textarea>
 
     <button type="submit">Submit</button>
   </form>
 
   <p id="status"></p>
 
-  <!-- Load UMD utils first (adds window.SWUtils in browser) -->
+  <!-- Load utils.js first (validation functions) -->
   <script src="./utils.js"></script>
-  <!-- Page logic uses SWUtils from window -->
+  <!-- Load storage.js next (localStorage helpers) -->
+  <script src="./storage.js"></script>
+  <!-- Load app.js last (form logic using utils + storage) -->
   <script src="./app.js"></script>
 </body>
 </html>

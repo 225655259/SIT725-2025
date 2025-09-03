@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Silent Witness - Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+    h1 { color: #333; }
+    .actions { margin: 12px 0; display: flex; gap: 10px; align-items: center; }
+    button { padding: 8px 12px; border: 1px solid #ccc; background: #fff; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #f0f0f0; }
+    table { border-collapse: collapse; width: 100%; max-width: 900px; background: #fff; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
+    th { background: #eee; }
+    .muted { color: #666; }
+    .empty { padding: 12px; }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Silent Witness — Dashboard</h1>
+  <p class="muted">Listing reports saved in your browser’s local storage.</p>
+
+  <div class="actions">
+    <a href="./index.html">← Back to Report Form</a>
+    <button id="refresh">Refresh</button>
+    <button id="clear">Clear All</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Email</th>
+        <th>Category</th>
+        <th>Details</th>
+        <th>Submitted At</th>
+      </tr>
+    </thead>
+    <tbody id="reportTable">
+      <tr><td class="empty" colspan="5">No reports yet</td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    const STORAGE_KEY = "sw_reports";
+    const tbody = document.getElementById("reportTable");
+    const btnRefresh = document.getElementById("refresh");
+    const btnClear = document.getElementById("clear");
+
+    function readReports() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function render() {
+      const reports = readReports();
+      if (!reports.length) {
+        tbody.innerHTML = '<tr><td class="empty" colspan="5">No reports yet</td></tr>';
+        return;
+      }
+      tbody.innerHTML = reports
+        .map((r, i) => {
+          const when = new Date(r.ts || Date.now()).toLocaleString();
+          return `<tr>
+            <td>${i + 1}</td>
+            <td>${r.email || "Anonymous"}</td>
+            <td>${r.category || ""}</td>
+            <td>${(r.details || "").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</td>
+            <td>${when}</td>
+          </tr>`;
+        })
+        .join("");
+    }
+
+    // Manual refresh
+    btnRefresh.addEventListener("click", render);
+
+    // Clear all
+    btnClear.addEventListener("click", () => {
+      if (confirm("Clear all stored reports?")) {
+        localStorage.removeItem(STORAGE_KEY);
+        render();
+      }
+    });
+
+    // Live update when another tab (index.html) writes to localStorage
+    window.addEventListener("storage", (e) => {
+      if (e.key === STORAGE_KEY) render();
+    });
+
+    // Initial render
+    render();
+  </script>
+</body>
+</html>
